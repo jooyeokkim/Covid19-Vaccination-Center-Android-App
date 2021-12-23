@@ -34,35 +34,9 @@ public class MapActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         textView = findViewById(R.id.textView2);
-        //Thread2 thread2 = new Thread2();
-        //thread2.start();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.googleMap);
         mapFragment.getMapAsync(this);
-    }
-
-    class Thread2 extends Thread{
-        @Override
-        public void run(){
-            try{
-                Intent intent = getIntent();
-                String address = intent.getExtras().getString("address");
-                URL url = new URL("https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+address+"&X-NCP-APIGW-API-KEY-ID=pci7h12l33&X-NCP-APIGW-API-KEY=5YT3fMgBArzgOBF582LfcNwXQ9Tg06kVD4SRI9HQ");
-                BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-                StringBuffer buffer = new StringBuffer();
-                String line = bf.readLine();
-                while (line != null) {
-                    buffer.append(line + "\n");
-                    line = bf.readLine();
-                }
-                String result = buffer.toString();
-                JSONObject jsonObject = new JSONObject(result);
-                JSONArray addressesArray = (JSONArray)jsonObject.get("addresses");
-                JSONObject point = (JSONObject)addressesArray.get(0);
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override

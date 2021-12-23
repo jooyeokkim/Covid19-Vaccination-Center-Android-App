@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String requestURL="https://api.odcloud.kr/api/15077603/v1/uddi:90bfb316-0caf-495b-92c0-c5cbc7bca1d9?page=1&perPage=50&serviceKey=etiZNjzfvCP6RvuXyA2rgGxZkigTg6UYUGJTWEot6ue0JTdrVCeN8CU2ctNtkV80LG3uinEWugdKL7le6qdo7A%3D%3D";
+    private String requestURL="https://api.odcloud.kr/api/15077603/v1/uddi:90bfb316-0caf-495b-92c0-c5cbc7bca1d9?page=1&perPage=50&serviceKey=[YOUR KEY]";
     private TextView textView;
     private ListView listView;
     private ArrayAdapter<String> listAdapter;
@@ -79,10 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
                 for(int i=0; i<dataArray.length(); i++) {
                     JSONObject item = (JSONObject) dataArray.get(i);
-                    //centerList.add(item.get("센터명") + "(" + item.get("시설명") + ")");
                     String address = item.get("주소").toString();
                     addressList.add(address);
-                    //listAdapter.notifyDataSetChanged();
                     try{
                         URL url2 = new URL("https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+address+"&X-NCP-APIGW-API-KEY-ID=pci7h12l33&X-NCP-APIGW-API-KEY=5YT3fMgBArzgOBF582LfcNwXQ9Tg06kVD4SRI9HQ");
                         BufferedReader bf2 = new BufferedReader(new InputStreamReader(url2.openStream(), "UTF-8"));
